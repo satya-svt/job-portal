@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useAccount } from 'wagmi';
+import { useAuth } from '../context/AuthContext';
 
-interface RootState {
-  auth: {
-    user: {
-      name?: string;
-      bio?: string;
-      linkedinUrl?: string;
-      walletAddress?: string;
-      location?: string;
-      experience?: string;
-      skills?: string[];
-    };
-  };
-}
+const experienceOptions = [
+  { value: 'entry', label: 'Entry' },
+  { value: 'junior', label: 'Junior' },
+  { value: 'mid', label: 'Mid' },
+  { value: 'senior', label: 'Senior' },
+  { value: 'lead', label: 'Lead' },
+  { value: 'executive', label: 'Executive' },
+];
 
 const Profile = () => {
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user, updateUser } = useAuth();
   const navigate = useNavigate();
   const { address } = useAccount();
 
@@ -38,6 +33,7 @@ const Profile = () => {
     if (address && !formData.walletAddress) {
       setFormData((prev) => ({ ...prev, walletAddress: address }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   const handleChange = (
@@ -55,7 +51,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       const { data } = await axios.put(
-      `${import.meta.env.VITE_BASE_URL}/users/profile`,
+        '/users/profile',
         {
           ...formData,
           skills: formData.skills.split(',').map((skill: string) => skill.trim())
@@ -67,6 +63,7 @@ const Profile = () => {
         }
       );
 
+      updateUser(data.user);
       toast.success('Profile updated!');
       navigate('/');
     } catch (error) {
@@ -124,9 +121,9 @@ const Profile = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         >
-          <option value="entry">Entry</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="expert">Expert</option>
+          {experienceOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
         </select>
         <input
           type="text"
