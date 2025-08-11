@@ -91,6 +91,21 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100">
+      {/* Glowing animation style */}
+      <style>
+        {`
+          .glow-animate {
+            box-shadow: 0 0 16px 2px rgba(236, 72, 153, 0.5), 0 0 32px 4px rgba(99, 102, 241, 0.3);
+            transition: box-shadow 0.3s, transform 0.2s;
+            position: relative;
+            z-index: 1;
+          }
+          .glow-animate:hover, .glow-animate:focus {
+            box-shadow: 0 0 32px 8px rgba(236, 72, 153, 0.8), 0 0 64px 16px rgba(99, 102, 241, 0.5);
+            transform: scale(1.04);
+          }
+        `}
+      </style>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 bg-gradient-to-br from-indigo-700 via-blue-700 to-indigo-900 text-white shadow-xl">
         <motion.div
@@ -130,14 +145,14 @@ const Home: React.FC = () => {
                 <>
                   <Link
                     to="/register"
-                    className="bg-gradient-to-r from-pink-400 to-indigo-500 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform inline-flex items-center justify-center"
+                    className="glow-animate bg-gradient-to-r from-pink-400 to-indigo-500 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform inline-flex items-center justify-center"
                   >
                     Get Started Free
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                   <Link
                     to="/jobs"
-                    className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-indigo-700 transition-colors inline-flex items-center justify-center"
+                    className="glow-animate border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-indigo-700 transition-colors inline-flex items-center justify-center"
                   >
                     Browse Jobs
                   </Link>
@@ -146,14 +161,14 @@ const Home: React.FC = () => {
                 <>
                   <Link
                     to="/dashboard"
-                    className="bg-gradient-to-r from-pink-400 to-indigo-500 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform inline-flex items-center justify-center"
+                    className="glow-animate bg-gradient-to-r from-pink-400 to-indigo-500 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform inline-flex items-center justify-center"
                   >
                     Go to Dashboard
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                   <Link
                     to="/post-job"
-                    className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-indigo-700 transition-colors inline-flex items-center justify-center"
+                    className="glow-animate border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-indigo-700 transition-colors inline-flex items-center justify-center"
                   >
                     Post a Job
                   </Link>
@@ -293,7 +308,7 @@ const Home: React.FC = () => {
           <div className="text-center mt-8">
             <Link
               to="/jobs"
-              className="bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform inline-flex items-center"
+              className="glow-animate bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform inline-flex items-center"
             >
               View All Jobs
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -372,7 +387,7 @@ const Home: React.FC = () => {
             <div className="text-center">
               <Link
                 to="/dashboard"
-                className="bg-gradient-to-r from-emerald-500 to-emerald-700 text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform inline-flex items-center"
+                className="glow-animate bg-gradient-to-r from-emerald-500 to-emerald-700 text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform inline-flex items-center"
               >
                 Join the Conversation
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -404,7 +419,7 @@ const Home: React.FC = () => {
           {!user ? (
             <Link
               to="/register"
-              className="bg-white text-pink-600 px-10 py-4 rounded-xl font-bold hover:bg-pink-50 transition-colors inline-flex items-center"
+              className="glow-animate bg-white text-pink-600 px-10 py-4 rounded-xl font-bold hover:bg-pink-50 transition-colors inline-flex items-center"
             >
               Start Your Journey Today
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -412,7 +427,7 @@ const Home: React.FC = () => {
           ) : (
             <Link
               to="/profile"
-              className="bg-white text-pink-600 px-10 py-4 rounded-xl font-bold hover:bg-pink-50 transition-colors inline-flex items-center"
+              className="glow-animate bg-white text-pink-600 px-10 py-4 rounded-xl font-bold hover:bg-pink-50 transition-colors inline-flex items-center"
             >
               Complete Your Profile
               <ArrowRight className="ml-2 h-5 w-5" />
